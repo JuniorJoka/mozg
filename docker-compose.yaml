@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      target: dev
+    volumes:
+      - nodemodules:/app/node_modules
+      - ./:/app
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+
+  mongodb:
+    image: mongo
+    ports:
+      - ${DB_PORT}:27017
+    volumes:
+      - dbdata:/data/db
+    environment:
+     - MONGODB-INITDB_ROOT_USERNAME=${DB_USERNAME}
+     - MONGODB-INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+
+
+volumes:
+  nodemodules:
+  dbdata:
