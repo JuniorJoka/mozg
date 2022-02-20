@@ -1,10 +1,9 @@
 import faker from '@faker-js/faker';
-import { Jwt, JwtPayload } from 'jsonwebtoken';
-import User from '..';
-import db from '../../../test/db';
-import registerViewer from '../mutationResolvers/registerViewer';
+import { JwtPayload } from 'jsonwebtoken';
+import db from '../../utils/testdb';
+import registerViewer from '../../modules/User/mutationResolvers/registerViewer';
 
-import { user } from '../utils/auth';
+import { user } from '../../modules/User/utils/auth';
 
 beforeAll(async () => db.connect());
 afterAll(async () => db.disconnect());

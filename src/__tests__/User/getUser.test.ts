@@ -1,8 +1,8 @@
 import faker from '@faker-js/faker';
-import User from '..';
-import db from '../../../test/db';
-import getUser from '../queryResolvers/getUser';
-import { UserType } from '../userType';
+import User from '../../modules/User';
+import db from '../../utils/testdb';
+import getUser from '../../modules/User/queryResolvers/getUser';
+import { UserType } from '../../modules/User/userType';
 
 beforeAll(async () => db.connect());
 afterAll(async () => db.disconnect());
@@ -16,20 +16,14 @@ let _id: string;
 describe('GetUser', () => {
   describe('On filled database', () => {
     beforeEach(async () => {
-      email = faker.internet.email();
-      password = faker.internet.password();
-      username = faker.internet.userName('mozg');
-      _id = faker.git.commitSha();
-
-      const user1 = await User.create({ _id, email, password, username });
-      email = faker.internet.email();
-      password = faker.internet.password();
-      username = faker.internet.userName('mozq');
-      _id = faker.git.commitSha();
-
-      const user2 = await User.create({ _id, email, password, username });
-      await user1.save();
-      await user2.save();
+      for (let i = 0; i < 2; i++) {
+        email = faker.internet.email();
+        password = faker.internet.password();
+        username = faker.internet.userName(`mozg${i}`);
+        _id = faker.git.commitSha();
+        const user = await User.create({ _id, email, password, username });
+        await user.save();
+      }
     });
     it('finds right user given id', async () => {
       const user = (await getUser({}, { id: _id })) as UserType;

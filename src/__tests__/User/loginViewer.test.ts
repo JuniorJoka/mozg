@@ -1,8 +1,7 @@
 import faker from '@faker-js/faker';
-import db from '../../../test/db';
-import User from '..';
-import loginViewer from '../mutationResolvers/loginViewer';
-import registerViewer from '../mutationResolvers/registerViewer';
+import db from '../../utils/testdb';
+import loginViewer from '../../modules/User/mutationResolvers/loginViewer';
+import registerViewer from '../../modules/User/mutationResolvers/registerViewer';
 
 beforeAll(async () => db.connect());
 afterAll(async () => db.disconnect());
