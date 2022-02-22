@@ -1,32 +1,26 @@
-import faker from '@faker-js/faker';
 import db from '../../utils/testdb';
 import loginViewer from '../../modules/User/mutationResolvers/loginViewer';
-import registerViewer from '../../modules/User/mutationResolvers/registerViewer';
+import { newViewer } from '../../utils/testhelpers';
 
 beforeAll(async () => db.connect());
 afterAll(async () => db.disconnect());
 afterEach(async () => db.clearDatabase());
 
-let email: string;
-let password: string;
-let username: string;
-
+let user: { [key: string]: string };
 beforeEach(async () => {
-  email = faker.internet.email();
-  password = faker.internet.password();
-  username = faker.internet.userName('mozg');
-
-  await registerViewer({}, { username, email, password });
+  user = await newViewer();
 });
 
 describe('LoginViewer', () => {
   describe('Login User', () => {
     it('given username and password', async () => {
+      const { username, password } = user;
       const token = await loginViewer({}, { username, password });
       expect(token).toBeDefined();
     });
 
     it('given email and password', async () => {
+      const { email, password } = user;
       const token = await loginViewer({}, { email, password });
       expect(token).toBeDefined();
     });
@@ -34,6 +28,7 @@ describe('LoginViewer', () => {
 
   describe('Throws Error', () => {
     it('given non-existent user', async () => {
+      const { password } = user;
       await expect(
         loginViewer({}, { username: 'non-existent', password })
       ).rejects.toThrow();
@@ -44,6 +39,7 @@ describe('LoginViewer', () => {
     });
 
     it('given wrong password ', async () => {
+      const { email } = user;
       await expect(
         loginViewer({}, { email, password: 'anotherPassword' })
       ).rejects.toThrow();
