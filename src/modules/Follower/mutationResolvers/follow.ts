@@ -6,13 +6,11 @@ import User from '../../User';
 import { followArgs } from '../followerType';
 
 export default async (_: Object, args: followArgs, context: ContextArgs) => {
-  console.log('entered func');
   const { followee } = args;
   const { user } = context;
 
   // only logged in users can follow others
   if (!user) {
-    console.log('no logged in user');
     throw new AuthenticationError(
       'You must be logged in to perform this action'
     );
@@ -21,12 +19,34 @@ export default async (_: Object, args: followArgs, context: ContextArgs) => {
   const followeeExists = await User.findById(followee);
 
   if (!followeeExists) {
-    console.log('followee does not exist');
     throw new ValidationError('No such user exists');
   }
 
+  // prevent duplicate relationship
+  const relationshipExists = await Follower.findOne({
+    follower: user.id,
+    followee,
+  });
+
+  if (relationshipExists) return true;
+
   const id = v4();
-  await Follower.create({ id, follower: user.id, followee });
-  console.log('done');
+  const followsBack = await Follower.findOneAndUpdate(
+    {
+      followee: user.id,
+      follower: followee,
+    },
+    { $set: { reciprocated: true } }
+  );
+  let reciprocated = false;
+  if (followsBack) reciprocated = true;
+  const newFollow = await Follower.create({
+    id,
+    follower: user.id,
+    followee,
+    reciprocated,
+  });
+  await newFollow.save();
+
   return true;
 };

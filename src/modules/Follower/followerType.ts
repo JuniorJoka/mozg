@@ -11,3 +11,7 @@ export interface followArgs {
 export interface followingArgs {}
 
 export interface followerArgs {}
+
+export interface FollowsMeArgs {
+  followee: string;
+}
