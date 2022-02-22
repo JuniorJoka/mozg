@@ -3,12 +3,13 @@ import User from '..';
 import { Jwt, Password } from '../utils/auth';
 import { v4 } from 'uuid';
 import { UserInputError } from 'apollo-server';
+import { INVALID_ARG_ERROR } from '../../shared/ErrorMsg';
 
 export default async (_: Object, args: RegisterViewerArgs): Promise<string> => {
   const { username, email } = args;
 
   if (!username || username.length < 4 || !email || !args.password) {
-    throw new UserInputError('Invalid argument value');
+    throw new UserInputError(INVALID_ARG_ERROR);
   }
 
   const hashedPassword = await Password.encrypt(args.password);

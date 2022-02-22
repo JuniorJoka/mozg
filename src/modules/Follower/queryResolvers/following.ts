@@ -1,17 +1,11 @@
-import { AuthenticationError } from 'apollo-server-express';
 import Follower from '..';
 import { ContextArgs } from '../../shared/Types';
-import { followingArgs } from '../followerType';
+import { user } from '../../User/utils/auth';
 
-export default async (_: Object, args: followingArgs, context: ContextArgs) => {
-  const { user } = context;
-  if (!user) {
-    throw new AuthenticationError(
-      'You must be logged in to perform this action'
-    );
-  }
+export default async (_: Object, __: Object, context: ContextArgs) => {
+  const follower = user.validate(context);
   const followings = await Follower.find({})
-    .where({ follower: user.id })
+    .where({ follower })
     .populate('followee');
   return followings.map((following) => following.followee);
 };

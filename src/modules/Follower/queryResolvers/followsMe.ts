@@ -1,20 +1,14 @@
-import { AuthenticationError } from 'apollo-server-express';
 import Follower from '..';
 import { ContextArgs } from '../../shared/Types';
 import { FollowsMeArgs } from '../followerType';
+import { user } from '../../User/utils/auth';
 
 export default async ({}, args: FollowsMeArgs, context: ContextArgs) => {
   const { followee } = args;
-  const { user } = context;
 
-  if (!user) {
-    throw new AuthenticationError(
-      'You must be logged in to perform this action'
-    );
-  }
-
+  const user_id = user.validate(context);
   const foundRelation = await Follower.findOne({
-    followee: user.id,
+    followee: user_id,
     follower: followee,
   });
 

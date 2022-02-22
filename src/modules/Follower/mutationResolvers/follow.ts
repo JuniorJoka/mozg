@@ -3,18 +3,15 @@ import { v4 } from 'uuid';
 import Follower from '..';
 import { ContextArgs } from '../../shared/Types';
 import User from '../../User';
+import { user } from '../../User/utils/auth';
 import { followArgs } from '../followerType';
 
 export default async (_: Object, args: followArgs, context: ContextArgs) => {
   const { followee } = args;
-  const { user } = context;
 
   // only logged in users can follow others
-  if (!user) {
-    throw new AuthenticationError(
-      'You must be logged in to perform this action'
-    );
-  }
+  const follower = user.validate(context);
+
   // determine followee exist in database
   const followeeExists = await User.findById(followee);
 
@@ -24,7 +21,7 @@ export default async (_: Object, args: followArgs, context: ContextArgs) => {
 
   // prevent duplicate relationship
   const relationshipExists = await Follower.findOne({
-    follower: user.id,
+    follower,
     followee,
   });
 
@@ -33,7 +30,7 @@ export default async (_: Object, args: followArgs, context: ContextArgs) => {
   const id = v4();
   const followsBack = await Follower.findOneAndUpdate(
     {
-      followee: user.id,
+      followee: follower,
       follower: followee,
     },
     { $set: { reciprocated: true } }
@@ -42,7 +39,7 @@ export default async (_: Object, args: followArgs, context: ContextArgs) => {
   if (followsBack) reciprocated = true;
   const newFollow = await Follower.create({
     id,
-    follower: user.id,
+    follower,
     followee,
     reciprocated,
   });
