@@ -11,7 +11,6 @@ export interface GetCommunityArgs {
 }
 
 export interface registerCommunityArgs {
-  creator: string;
   name: string;
   description?: string;
 }

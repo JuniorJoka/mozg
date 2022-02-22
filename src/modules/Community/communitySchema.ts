@@ -14,6 +14,6 @@ export default gql`
   }
 
   extend type Mutation {
-    registerCommunity(name: String!, creator: String!, description: String): ID
+    registerCommunity(name: String!, description: String): ID
   }
 `;
