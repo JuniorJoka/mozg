@@ -1,6 +1,6 @@
 import { AuthenticationError } from 'apollo-server-express';
 import Follower from '..';
-import { ContextArgs } from '../../sharedTypes';
+import { ContextArgs } from '../../shared/Types';
 import { FollowsMeArgs } from '../followerType';
 
 export default async ({}, args: FollowsMeArgs, context: ContextArgs) => {

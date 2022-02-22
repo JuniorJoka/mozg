@@ -2,7 +2,7 @@ import { UserInputError, AuthenticationError } from 'apollo-server-express';
 import { v4 } from 'uuid';
 import Community from '..';
 import User from '../../User';
-import { ContextArgs } from '../../sharedTypes';
+import { ContextArgs } from '../../shared/Types';
 import { registerCommunityArgs } from '../communityType';
 
 export default async (

@@ -1,5 +1,5 @@
 import { AuthenticationError } from 'apollo-server-express';
-import { ContextArgs } from '../../sharedTypes';
+import { ContextArgs } from '../../shared/Types';
 import { followArgs } from '../followerType';
 import Follower from '..';
 
