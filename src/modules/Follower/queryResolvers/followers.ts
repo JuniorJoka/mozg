@@ -1,4 +1,3 @@
-import { AuthenticationError } from 'apollo-server-express';
 import Follower from '..';
 import { ContextArgs } from '../../shared/Types';
 import { user } from '../../User/utils/auth';

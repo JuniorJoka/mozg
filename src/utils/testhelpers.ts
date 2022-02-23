@@ -1,6 +1,7 @@
 import faker from '@faker-js/faker';
 import { JwtPayload } from 'jsonwebtoken';
 import registerCommunity from '../modules/Community/mutationResolvers/registerCommunity';
+import follow from '../modules/Follower/mutationResolvers/follow';
 import registerViewer from '../modules/User/mutationResolvers/registerViewer';
 import { user } from '../modules/User/utils/auth';
 
@@ -23,4 +24,13 @@ export const newCommunity = async (id: string) => {
     { user: { id } }
   );
   return { name, description, comm_id, creator: id };
+};
+
+// export const newFollow = async (id: string, followee: string) => {
+//   await follow({}, { followee }, { user: { id } });
+// };
+
+export const newRelation = async (id: string, followee: string) => {
+  await follow({}, { followee }, { user: { id } });
+  await follow({}, { followee: id }, { user: { id: followee } });
 };

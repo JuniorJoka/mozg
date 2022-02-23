@@ -2,6 +2,7 @@ export interface followerType {
   _id: string;
   follower: string;
   followee: string;
+  reciprocated: boolean;
 }
 
 export interface followArgs {
