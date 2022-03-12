@@ -16,7 +16,11 @@ export const Password = {
 };
 
 export const Jwt = {
-  generate: (user: UserType) => jwt.sign({ id: user._id }, config.jwtSecret),
+  generate: (user: UserType) =>
+    jwt.sign(
+      { id: user._id, email: user.email, username: user.username },
+      config.jwtSecret
+    ),
   verify: (token: string) => jwt.verify(token, config.jwtSecret),
 };
 
