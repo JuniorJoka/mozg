@@ -1,7 +1,7 @@
 import { AuthenticationError, ValidationError } from 'apollo-server-express';
 import { v4 } from 'uuid';
 import Follower from '..';
-import { ContextArgs } from '../../shared/Types';
+import { ContextArgs } from '../../../shared/Types';
 import User from '../../User';
 import { user } from '../../User/utils/auth';
 import { followArgs } from '../followerType';

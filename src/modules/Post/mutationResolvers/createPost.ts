@@ -1,7 +1,7 @@
 import { v4 } from 'uuid';
 import Post from '..';
 import Community from '../../Community';
-import { ContextArgs } from '../../shared/Types';
+import { ContextArgs } from '../../../shared/Types';
 import { user } from '../../User/utils/auth';
 import { newPostArgs } from '../postType';
 

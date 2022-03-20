@@ -1,5 +1,5 @@
 import Follower from '..';
-import { ContextArgs } from '../../shared/Types';
+import { ContextArgs } from '../../../shared/Types';
 import { user } from '../../User/utils/auth';
 
 export default async (_: Object, __: Object, context: ContextArgs) => {

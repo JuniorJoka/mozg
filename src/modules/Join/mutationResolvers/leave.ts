@@ -1,5 +1,5 @@
 import Join from '..';
-import { ContextArgs } from '../../shared/Types';
+import { ContextArgs } from '../../../shared/Types';
 import { user } from '../../User/utils/auth';
 import { JoinArgs } from '../joinType';
 import validate from '../utils/validate';

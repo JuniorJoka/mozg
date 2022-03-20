@@ -2,7 +2,7 @@ import { v4 } from 'uuid';
 import Comment from '..';
 import Post from '../../Post';
 import { PostType } from '../../Post/postType';
-import { ContextArgs } from '../../shared/Types';
+import { ContextArgs } from '../../../shared/Types';
 import User from '../../User';
 import { user } from '../../User/utils/auth';
 import { CommentType, newCommentArgs } from '../commentType';

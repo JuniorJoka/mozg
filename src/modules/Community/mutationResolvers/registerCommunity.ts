@@ -2,7 +2,7 @@ import { UserInputError } from 'apollo-server-express';
 import { v4 } from 'uuid';
 import Community from '..';
 
-import { ContextArgs } from '../../shared/Types';
+import { ContextArgs } from '../../../shared/Types';
 import { registerCommunityArgs } from '../communityType';
 import { user } from '../../User/utils/auth';
 

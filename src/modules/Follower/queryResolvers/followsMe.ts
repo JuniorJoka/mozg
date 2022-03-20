@@ -1,5 +1,5 @@
 import Follower from '..';
-import { ContextArgs } from '../../shared/Types';
+import { ContextArgs } from '../../../shared/Types';
 import { FollowsMeArgs } from '../followerType';
 import { user } from '../../User/utils/auth';
 

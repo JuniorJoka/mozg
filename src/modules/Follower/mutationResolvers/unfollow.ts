@@ -1,4 +1,4 @@
-import { ContextArgs } from '../../shared/Types';
+import { ContextArgs } from '../../../shared/Types';
 import { followArgs } from '../followerType';
 import { user } from '../../User/utils/auth';
 import Follower from '..';

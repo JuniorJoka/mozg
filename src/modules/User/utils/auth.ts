@@ -2,8 +2,8 @@ import { AuthenticationError } from 'apollo-server-express';
 import { compare, hash } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import config from '../../../config';
-import { AUTH_ERROR } from '../../shared/ErrorMsg';
-import { ContextArgs } from '../../shared/Types';
+import { AUTH_ERROR } from '../../../shared/ErrorMsg';
+import { ContextArgs } from '../../../shared/Types';
 import { UserType } from '../userType';
 
 export const Password = {
@@ -16,10 +16,11 @@ export const Password = {
 };
 
 export const Jwt = {
-  generate: (user: UserType) =>
+  generate: (user: UserType, options?: jwt.SignOptions) =>
     jwt.sign(
       { id: user._id, email: user.email, username: user.username },
-      config.jwtSecret
+      config.jwtSecret,
+      options
     ),
   verify: (token: string) => jwt.verify(token, config.jwtSecret),
 };

@@ -1,6 +1,6 @@
 import { AuthenticationError } from 'apollo-server-express';
 import User from '..';
-import { LOGGING_ERROR } from '../../shared/ErrorMsg';
+import { LOGGING_ERROR } from '../../../shared/ErrorMsg';
 import { LoginViewerArgs } from '../userType';
 import { Jwt, Password } from '../utils/auth';
 

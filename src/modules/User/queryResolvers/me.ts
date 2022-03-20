@@ -1,5 +1,5 @@
 import User from '..';
-import { ContextArgs } from '../../shared/Types';
+import { ContextArgs } from '../../../shared/Types';
 
 export default async (_: Object, __: Object, context: ContextArgs) => {
   const { user } = context;
