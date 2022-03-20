@@ -17,6 +17,7 @@
     "@faker-js/faker": "^6.0.0-alpha.6",
     "@shelf/jest-mongodb": "^2.2.0",
     "@types/bcryptjs": "^2.4.2",
+    "@types/ioredis": "^4.28.9",
     "@types/jest": "^27.4.0",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^17.0.17",
@@ -50,17 +51,16 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "graphql": "^16.3.0",
+    "ioredis": "^4.28.5",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.1",
+    "multer": "^1.4.4",
+    "redis": "^4.0.4",
     "uuid": "^8.3.2"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node"
   }
 }
