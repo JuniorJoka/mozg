@@ -1,6 +1,7 @@
+import jwt from 'jsonwebtoken';
+import config from '../../config';
 import db from '../../utils/testdb';
 import me from '../../modules/User/queryResolvers/me';
-import { user } from '../../modules/User/utils/auth';
 import { newViewer } from '../../utils/testhelpers';
 
 beforeAll(async () => db.connect());
@@ -13,8 +14,10 @@ beforeEach(async () => (logged = await newViewer()));
 describe('Me', () => {
   it('gets currently logged in user', async () => {
     const { username, email, token } = logged;
-    const currentUser = user.get(token);
-    const loggedInUser = await me({}, {}, { user: currentUser });
+    const { data } = jwt.verify(token, config.jwtSecret) as unknown as {
+      data: any;
+    };
+    const loggedInUser = await me({}, {}, { user: data });
     expect(loggedInUser?.email).toBe(email);
     expect(loggedInUser?.username).toBe(username);
   });
