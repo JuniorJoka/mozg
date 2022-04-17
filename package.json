@@ -7,8 +7,8 @@
     "dev": "nodemon -L  src/index.ts",
     "lint": "eslint",
     "lint:fix": "npm lint --fix",
-    "test": "jest --runInBand",
-    "test:coverage": "jest --runInBand --coverage"
+    "test": "jest --runInBand ./src/__tests__",
+    "test:coverage": "jest --runInBand --coverage ./src/__tests__"
   },
   "author": "",
   "license": "ISC",
