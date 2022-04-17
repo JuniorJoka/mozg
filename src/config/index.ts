@@ -5,4 +5,5 @@ export default {
   databasePort: process.env.DB_PORT as string,
   jwtSecret: process.env.JWT_SECRET as string,
   saltRounds: process.env.SALT_ROUNDS as string,
+  accessOrigin: process.env.ACCESS_ORIGIN as string,
 };
