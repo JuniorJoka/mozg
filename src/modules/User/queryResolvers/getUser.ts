@@ -2,10 +2,9 @@ import User from '../userModel';
 import { GetUserArgs } from '../userType';
 
 export default async (_: Object, args: GetUserArgs) => {
-  const { id } = args;
-  if (id) {
-    return await User.findById(id);
-  }
+  const { id, username } = args;
 
-  return await User.find({});
+  if (id) return await User.findById(id);
+  if (username) return await User.findOne({ username });
+  return null;
 };
