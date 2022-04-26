@@ -12,6 +12,7 @@ export interface LoginViewerArgs {
 
 export interface GetUserArgs {
   id?: string;
+  username?: string;
 }
 
 export interface UserType {
