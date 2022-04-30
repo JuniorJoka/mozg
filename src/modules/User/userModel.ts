@@ -8,4 +8,10 @@ const userSchema = new Schema({
   username: { type: String, minLength: 4, required: true, unique: true },
 });
 
-export default model<UserType>('User', userSchema);
+const UserModel = model<UserType>('User', userSchema);
+export default UserModel;
+
+userSchema.methods.findByLogin = async (login: string) =>
+  await UserModel.findOne({
+    $or: [{ username: login }, { email: login }],
+  });
