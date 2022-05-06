@@ -1,3 +1,5 @@
+import { Model, Document } from 'mongoose';
+
 export interface RegisterViewerArgs {
   email: string;
   password: string;
@@ -5,8 +7,7 @@ export interface RegisterViewerArgs {
 }
 
 export interface LoginViewerArgs {
-  email?: string;
-  username?: string;
+  login: string;
   password: string;
 }
 
@@ -15,9 +16,18 @@ export interface GetUserArgs {
   username?: string;
 }
 
-export interface UserType {
+interface UserMethods {
+  validatePassword(password: string): Promise<boolean>;
+}
+
+export interface UserType extends Document, UserMethods {
   _id: string;
   email: string;
   password: string;
   username: string;
+}
+
+export interface UserModel extends Model<UserType> {
+  generatePasswordHash(password: string): Promise<string>;
+  findByLogin(username: string): Promise<UserType | null>;
 }

@@ -10,12 +10,11 @@ export default gql`
   extend type Query {
     me: User
     users: [User]
-    user(id: ID): User
+    user(id: ID, username: String): User
   }
 
   type Mutation {
     register(username: String!, email: String!, password: String!): String
-    login(username: String, email: String, password: String): String
-    refresh: String
+    login(login: String!, password: String!): String
   }
 `;
