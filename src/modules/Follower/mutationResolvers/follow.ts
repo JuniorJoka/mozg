@@ -1,12 +1,12 @@
 import { AuthenticationError, ValidationError } from 'apollo-server-express';
 import { v4 } from 'uuid';
 import Follower from '..';
-import { ContextArgs } from '../../../shared/Types';
+import { Context } from '../../../shared/Types';
 import User from '../../User';
 import { user } from '../../User/utils/auth';
 import { followArgs } from '../followerType';
 
-export default async (_: Object, args: followArgs, context: ContextArgs) => {
+export default async (_: {}, args: followArgs, context: Context) => {
   const { followee } = args;
 
   // only logged in users can follow others

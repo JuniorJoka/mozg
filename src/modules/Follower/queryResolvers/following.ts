@@ -1,8 +1,8 @@
 import Follower from '..';
-import { ContextArgs } from '../../../shared/Types';
+import { Context } from '../../../shared/Types';
 import { user } from '../../User/utils/auth';
 
-export default async (_: Object, __: Object, context: ContextArgs) => {
+export default async (_: {}, __: {}, context: Context) => {
   const follower = user.validate(context);
   const followings = await Follower.find({})
     .where({ follower })

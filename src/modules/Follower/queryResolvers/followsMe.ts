@@ -1,9 +1,9 @@
 import Follower from '..';
-import { ContextArgs } from '../../../shared/Types';
+import { Context } from '../../../shared/Types';
 import { FollowsMeArgs } from '../followerType';
 import { user } from '../../User/utils/auth';
 
-export default async ({}, args: FollowsMeArgs, context: ContextArgs) => {
+export default async ({}, args: FollowsMeArgs, context: Context) => {
   const { followee } = args;
 
   const user_id = user.validate(context);

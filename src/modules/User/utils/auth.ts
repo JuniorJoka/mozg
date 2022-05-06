@@ -3,7 +3,7 @@ import { compare, hash } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import config from '../../../config';
 import { AUTH_ERROR } from '../../../shared/ErrorMsg';
-import { ContextArgs } from '../../../shared/Types';
+import { Context } from '../../../shared/Types';
 import { UserType } from '../userType';
 
 export const Password = {
@@ -37,7 +37,7 @@ export const user = {
     return null;
   },
 
-  validate: (userContext: ContextArgs): string => {
+  validate: (userContext: Context): string => {
     const { user } = userContext;
     if (!user) throw new AuthenticationError(AUTH_ERROR);
     return user.id;
