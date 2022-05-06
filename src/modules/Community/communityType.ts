@@ -1,16 +1,20 @@
 export interface CommunityType {
   _id: string;
-  name: string;
-  description?: string;
-  creator: string;
+  communityName: string;
+  communityDescription?: string;
+  creatorId: string;
   moderators: String[];
 }
 
 export interface GetCommunityArgs {
-  id?: string;
+  communityName: string;
 }
 
 export interface registerCommunityArgs {
-  name: string;
-  description?: string;
+  communityName: string;
+  communityDescription?: string;
+}
+
+export interface CommunityCreatorArgs {
+  creatorId: string;
 }

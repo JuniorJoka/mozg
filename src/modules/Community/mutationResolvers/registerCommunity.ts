@@ -1,29 +1,26 @@
 import { UserInputError } from 'apollo-server-express';
 import { v4 } from 'uuid';
-import Community from '..';
 
-import { ContextArgs } from '../../../shared/Types';
+import { Context } from '../../../shared/Types';
 import { registerCommunityArgs } from '../communityType';
 import { user } from '../../User/utils/auth';
 
-export default async (
-  _: Object,
-  args: registerCommunityArgs,
-  context: ContextArgs
-) => {
-  const { name, description } = args;
+export default async (_: {}, args: registerCommunityArgs, context: Context) => {
+  const { communityName, communityDescription } = args;
 
   const creator = user.validate(context);
-  if (!name) {
+  if (!communityName) {
     throw new UserInputError('Invalid community name');
   }
 
+  const { models } = context;
+
   const id = v4();
-  const community = await Community.create({
+  const community = await models.Community.create({
     id,
-    name,
-    creator,
-    description,
+    communityName,
+    creatorId: creator,
+    communityDescription,
   });
 
   // TODO: creator should follow community

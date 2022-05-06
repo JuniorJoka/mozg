@@ -1,13 +1,14 @@
 import typeDefs from './communitySchema';
 import Query from './queryResolvers';
 import Mutation from './mutationResolvers';
-import Community from './communityModel';
+import Model from './communityModel';
+import Community from './communityResolvers';
 
-const resolvers = { Query, Mutation };
+const resolvers = { Query, Mutation, Community };
 
 export const communitySchema = {
   typeDefs,
   resolvers,
 };
 
-export default Community;
+export default Model;

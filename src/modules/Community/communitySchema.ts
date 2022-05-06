@@ -3,17 +3,18 @@ import { gql } from 'apollo-server-express';
 export default gql`
   type Community {
     id: String
-    name: String
+    communityName: String
+    communitydescription: String
     creator: User
     followerCount: Int
   }
 
   extend type Query {
     communities: [Community]
-    community(id: ID): Community
+    community(communityName: String!): Community
   }
 
   extend type Mutation {
-    registerCommunity(name: String!, description: String): ID
+    registerCommunity(communityName: String!, communityDescription: String): ID
   }
 `;
