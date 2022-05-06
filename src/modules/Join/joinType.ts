@@ -1,9 +1,9 @@
 export interface JoinType {
   _id: string;
-  community: string;
-  member: string;
+  communityId: string;
+  memberId: string;
 }
 
 export interface JoinArgs {
-  community: string;
+  communityId: string;
 }

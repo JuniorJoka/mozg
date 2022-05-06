@@ -7,7 +7,11 @@ import validate from '../utils/validate';
 export default async (_: {}, args: JoinArgs, context: Context) => {
   await validate(args);
   user.validate(context);
-  const { community } = args;
+  const { communityId } = args;
 
-  await Join.findOneAndRemove({ community, user: context.user });
+  if (!context.user) {
+    throw Error('Invalid user');
+  }
+
+  await Join.findOneAndRemove({ communityId, memberId: context.user.id });
 };
