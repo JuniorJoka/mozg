@@ -6,16 +6,32 @@ export interface PostType {
 }
 
 export interface CommunityPostArgs {
-  community?: string;
+  communityId?: string;
+}
+
+export interface ViewPostArgs {
+  viewer?: string;
 }
 
 export interface PostArgs {
-  id?: string;
+  postId?: string;
 }
 
 export interface newPostArgs {
   title: string;
-  type: string;
+  postType: string;
   content?: string;
-  community?: string;
+  communityId?: string;
+}
+
+export interface PostsArgs {
+  creatorId: string;
+}
+
+export interface PostCreatorArgs {
+  creatorId: string;
+}
+
+export interface PostCommunityArgs {
+  communityId: string;
 }

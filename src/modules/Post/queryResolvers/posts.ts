@@ -2,7 +2,7 @@ import Post from '..';
 import { PostsArgs } from '../postType';
 
 export default async (_: Object, args: PostsArgs) => {
-  const { creator } = args;
+  const { creatorId } = args;
 
-  return await Post.find({ creator_id: creator });
+  return await Post.find({ creatorId });
 };

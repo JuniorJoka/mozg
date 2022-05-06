@@ -2,8 +2,8 @@ import Post from '..';
 import { PostArgs } from '../postType';
 
 export default async (_: Object, args: PostArgs) => {
-  const { id } = args;
+  const { postId } = args;
 
-  if (id) return await Post.findById(id);
+  if (postId) return await Post.findById(postId);
   return await Post.find({});
 };

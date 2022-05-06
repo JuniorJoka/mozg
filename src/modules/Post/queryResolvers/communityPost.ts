@@ -4,10 +4,10 @@ import validate from '../../Join/utils/validate';
 import { CommunityPostArgs } from '../postType';
 
 export default async (_: Object, args: CommunityPostArgs) => {
-  const { community } = args;
-  await validate({ community: community || '' });
+  const { communityId } = args;
+  await validate({ community: communityId || '' });
 
-  if (community) {
-    return await Post.find({ community });
+  if (communityId) {
+    return await Post.find({ communityId });
   }
 };

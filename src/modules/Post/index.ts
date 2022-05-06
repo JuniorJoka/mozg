@@ -1,13 +1,14 @@
 import typeDefs from './postSchema';
 import Query from './queryResolvers';
 import Mutation from './mutationResolvers';
-import Post from './postModel';
+import Model from './postModel';
+import Post from './postResolvers';
 
-const resolvers = { Query, Mutation };
+const resolvers = { Query, Mutation, Post };
 
 export const postSchema = {
   typeDefs,
   resolvers,
 };
 
-export default Post;
+export default Model;
