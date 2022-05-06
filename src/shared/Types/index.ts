@@ -1,5 +1,6 @@
 import { JwtPayload } from 'jsonwebtoken';
-
-export interface ContextArgs {
-  user: JwtPayload | null;
+import models from '../../modules';
+export interface Context {
+  models: typeof models;
+  user: JwtPayload | string;
 }
