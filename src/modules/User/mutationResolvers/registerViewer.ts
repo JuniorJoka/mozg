@@ -1,32 +1,33 @@
 import { RegisterViewerArgs } from '../userType';
+import jwt from 'jsonwebtoken';
 import User from '..';
-import { Jwt, Password } from '../utils/auth';
-import { v4 } from 'uuid';
 import { UserInputError } from 'apollo-server';
 import { INVALID_ARG_ERROR } from '../../../shared/ErrorMsg';
+import config from '../../../config';
+import { Context } from '../../../shared/Types';
 
-export default async (_: Object, args: RegisterViewerArgs): Promise<string> => {
-  const { username, email } = args;
+export default async (
+  _: Object,
+  args: RegisterViewerArgs,
+  { models }: Context
+): Promise<string> => {
+  const { username, email, password } = args;
 
   if (!username || username.length < 4 || !email || !args.password) {
     throw new UserInputError(INVALID_ARG_ERROR);
   }
 
-  const hashedPassword = await Password.encrypt(args.password);
-
   //create user
-  const user = await User.create({
-    id: v4(),
-    username,
-    email,
-    password: hashedPassword,
-  });
+  const newUser = await models.User.create({ username, email, password });
+  // save user to db
+  const user = await newUser.save();
 
   // generate token from user id
-  const token = Jwt.generate(user);
-
-  // save user to database
-  await user.save();
-
-  return token;
+  return jwt.sign(
+    { data: { id: user.id, username: user.username, email: user.email } },
+    config.jwtSecret,
+    {
+      expiresIn: '7 days',
+    }
+  );
 };

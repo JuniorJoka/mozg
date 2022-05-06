@@ -1,28 +1,31 @@
 import { AuthenticationError } from 'apollo-server-express';
-import User from '..';
+import jwt from 'jsonwebtoken';
+import config from '../../../config';
 import { LOGGING_ERROR } from '../../../shared/ErrorMsg';
+import { Context } from '../../../shared/Types';
 import { LoginViewerArgs } from '../userType';
-import { Jwt, Password } from '../utils/auth';
 
-export default async (_: object, args: LoginViewerArgs) => {
-  const { username, password, email } = args;
+export default async (_: {}, args: LoginViewerArgs, { models }: Context) => {
+  const { login, password } = args;
 
   // get user
-  const user = await User.findOne({ $or: [{ username }, { email }] });
+  const user = await models.User.findByLogin(login);
 
   // throw auth error on no user
   if (!user) {
     throw new AuthenticationError(LOGGING_ERROR);
   }
 
-  const passwordIsValid = await Password.verify(user.password, password);
+  const validPassword = await user.validatePassword(password);
 
   // throw auth error on wrong password
-  if (!passwordIsValid) {
+  if (!validPassword) {
     throw new AuthenticationError(LOGGING_ERROR);
   }
 
-  // create token
-  const token = Jwt.generate(user);
-  return token;
+  // generate token
+  const { username, email, id } = user;
+  return jwt.sign({ data: { username, email, id } }, config.jwtSecret, {
+    expiresIn: '7 days',
+  });
 };

@@ -1,5 +1,5 @@
-import User from '../userModel';
+import { Context } from '../../../shared/Types';
 
-export default async () => {
-  return await User.find({});
+export default async (_: {}, __: {}, { models }: Context) => {
+  return await models.User.find({});
 };
