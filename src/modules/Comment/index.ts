@@ -1,13 +1,14 @@
 import typeDefs from './commentSchema';
 import Query from './queryResolvers';
 import Mutation from './mutationResolvers';
-import Comment from './commentModel';
+import Model from './commentModel';
+import Comment from './commentResolvers';
 
-const resolvers = { Query, Mutation };
+const resolvers = { Query, Mutation, Comment };
 
 export const commentSchema = {
   typeDefs,
   resolvers,
 };
 
-export default Comment;
+export default Model;

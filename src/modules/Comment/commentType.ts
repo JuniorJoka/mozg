@@ -1,6 +1,6 @@
 export interface CommentType {
   _id: string;
-  post: string;
+  postId: string;
   parent: {
     id: string;
     title: string;
@@ -21,6 +21,21 @@ export interface newCommentArgs {
   parent: string;
   type: string;
   comment: string;
-  post: string;
+  postId: string;
   commentor: string;
+}
+
+export interface postCommentArgs {
+  id: string;
+}
+
+export interface CommentReplyArgs {
+  id: string;
+  postId: string;
+}
+
+export interface newComment extends newCommentArgs {
+  title: string;
+  id: string;
+  username: string;
 }

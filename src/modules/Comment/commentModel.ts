@@ -6,17 +6,20 @@ const parentTypes = ['post', 'comment'];
 const commentSchema = new Schema(
   {
     _id: { type: String, required: true, alias: 'id' },
-    post: { type: String, required: true, ref: 'Post' },
+    postId: { type: String, required: true, ref: 'Post' },
     parent: {
       title: { type: String, required: true },
       id: { type: String, required: true },
-      type: { type: String, enum: parentTypes, required: true },
+      parentType: { type: String, enum: parentTypes, required: true },
     },
     comment: { type: String, required: true },
     commentor: {
       id: { type: String, required: true, ref: 'User' },
       username: { type: String, required: true },
     },
+    isDeleted: { type: Boolean, required: true, default: false },
+    upVotes: { type: Number, required: true, default: 0 },
+    downVotes: { type: Number, required: true, default: 0 },
   },
   { timestamps: true }
 );
