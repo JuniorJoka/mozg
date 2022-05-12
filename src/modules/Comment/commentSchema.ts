@@ -1,15 +1,12 @@
 import { gql } from 'apollo-server-express';
 
 export default gql`
-  type CommentParent {
-    id: String!
-    title: String!
-    type: String!
-  }
   type Comment {
     id: String!
-    parent: CommentParent!
+    parentId: String!
+    parentType: String!
     comment: String!
+    commentor: User!
     replies: [Comment]
     commentCount: Int!
     upVotes: Int!
@@ -17,7 +14,7 @@ export default gql`
   }
 
   extend type Query {
-    comments(id: String!): [Comment]
+    comment(commentId: String!): Comment
     postComments(PostId: String!): [Comment]
   }
 

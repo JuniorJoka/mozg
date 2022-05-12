@@ -1,4 +1,4 @@
-import comments from './comments';
+import comment from './comment';
 import postComments from './postComments';
 
-export default { comments, postComments };
+export default { comment, postComments };

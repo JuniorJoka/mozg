@@ -1,7 +1,6 @@
-import Comment from '..';
-import { CommentReplyArgs } from '../commentType';
+import CommentType from '../commentType';
+import { Context } from '../../../shared/Types';
 
-export default async (parent: CommentReplyArgs) => {
-  const { id } = parent;
-  return await Comment.find({ 'parent.id': id });
+export default async ({ _id }: CommentType, _: {}, { models }: Context) => {
+  await models.Comment.find({ parentId: _id });
 };

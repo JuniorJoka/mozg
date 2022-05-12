@@ -1,41 +1,14 @@
-export interface CommentType {
+export default interface CommentType {
   _id: string;
   postId: string;
-  parent: {
-    id: string;
-    title: string;
-    type: string;
-  };
+  parentId: string;
+  parentType: string;
   comment: string;
-  commentor: {
-    id: string;
-    name: string;
-  };
+  commentorId: string;
 }
 
-export interface commentArgs {
-  id: string;
+export interface comment {
+  commentId: string;
 }
 
-export interface newCommentArgs {
-  parent: string;
-  type: string;
-  comment: string;
-  postId: string;
-  commentor: string;
-}
-
-export interface postCommentArgs {
-  id: string;
-}
-
-export interface CommentReplyArgs {
-  id: string;
-  postId: string;
-}
-
-export interface newComment extends newCommentArgs {
-  title: string;
-  id: string;
-  username: string;
-}
+export interface newComment extends Omit<CommentType, '_id'> {}
