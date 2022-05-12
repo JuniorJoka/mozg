@@ -17,6 +17,7 @@
     "@faker-js/faker": "^6.0.0-alpha.6",
     "@shelf/jest-mongodb": "^2.2.0",
     "@types/bcryptjs": "^2.4.2",
+    "@types/graphql-resolvers": "^0.3.1",
     "@types/ioredis": "^4.28.9",
     "@types/jest": "^27.4.0",
     "@types/jsonwebtoken": "^8.5.8",
