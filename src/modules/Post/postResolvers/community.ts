@@ -1,7 +1,6 @@
-import Community from '../../Community';
-import { PostCommunityArgs } from '../postType';
+import Post from '../postType';
+import { Context } from '../../../shared/Types';
 
-export default async (parent: PostCommunityArgs) => {
-  const { communityId } = parent;
-  return await Community.findById(communityId);
+export default async ({ communityId }: Post, _: {}, { models }: Context) => {
+  return await models.Community.findById(communityId);
 };

@@ -26,8 +26,9 @@ export default gql`
 
   extend type Query {
     post(postId: ID!): Post
-    posts(creatorId: ID!): [Post]
-    communityPost(communityId: ID!): [Post]
-    viewerPost: [Post]
+    posts: [Post]
+    userPosts(creatorId: ID): [Post]
+    communityPosts(communityId: ID!): [Post]
+    viewerPosts: [Post]
   }
 `;

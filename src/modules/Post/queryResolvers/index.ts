@@ -1,11 +1,13 @@
-import getPost from './getPost';
-import viewerPost from './viewerPost';
-import communityPost from './communityPost';
+import post from './post';
+import viewerPosts from './viewerPosts';
+import communityPosts from './communityPosts';
+import userPosts from './userPosts';
 import posts from './posts';
 
 export default {
-  post: getPost,
+  post,
   posts,
-  viewerPost,
-  communityPost,
+  userPosts,
+  viewerPosts,
+  communityPosts,
 };

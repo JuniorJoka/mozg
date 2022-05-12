@@ -1,7 +1,6 @@
-import User from '../../User';
-import { PostCreatorArgs } from '../postType';
+import { Context } from '../../../shared/Types';
+import Post from '../postType';
 
-export default async (parent: PostCreatorArgs) => {
-  const { creatorId } = parent;
-  return await User.findById(creatorId);
+export default async ({ creatorId }: Post, _: {}, { models }: Context) => {
+  return await models.User.findById(creatorId);
 };
