@@ -25,7 +25,9 @@ export default async (_: {}, args: LoginViewerArgs, { models }: Context) => {
 
   // generate token
   const { username, email, id } = user;
-  return jwt.sign({ data: { username, email, id } }, config.jwtSecret, {
+  const token = jwt.sign({ data: { username, email, id } }, config.jwtSecret, {
     expiresIn: '7 days',
   });
+
+  return { user, token };
 };

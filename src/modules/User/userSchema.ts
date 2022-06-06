@@ -13,8 +13,13 @@ export default gql`
     user(id: ID, username: String): User
   }
 
+  type Auth {
+    token: String
+    user: User
+  }
+
   type Mutation {
-    register(username: String!, email: String!, password: String!): String
-    login(login: String!, password: String!): String
+    register(username: String!, email: String!, password: String!): Auth
+    login(login: String!, password: String!): Auth
   }
 `;

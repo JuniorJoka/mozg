@@ -1,6 +1,5 @@
 import { RegisterViewerArgs } from '../userType';
 import jwt from 'jsonwebtoken';
-import User from '..';
 import { UserInputError } from 'apollo-server';
 import { INVALID_ARG_ERROR } from '../../../shared/ErrorMsg';
 import config from '../../../config';
@@ -10,7 +9,7 @@ export default async (
   _: Object,
   args: RegisterViewerArgs,
   { models }: Context
-): Promise<string> => {
+) => {
   const { username, email, password } = args;
 
   if (!username || username.length < 4 || !email || !args.password) {
@@ -23,11 +22,13 @@ export default async (
   const user = await newUser.save();
 
   // generate token from user id
-  return jwt.sign(
+  const token = jwt.sign(
     { data: { id: user.id, username: user.username, email: user.email } },
     config.jwtSecret,
     {
       expiresIn: '7 days',
     }
   );
+
+  return { token, user };
 };
