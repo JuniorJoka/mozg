@@ -1,4 +1,3 @@
-import Post from '../../Post';
 import { Context } from '../../../shared/Types';
 import { newComment } from '../commentType';
 
@@ -29,10 +28,7 @@ export default async (_: {}, args: newComment, context: Context) => {
 
   // increment comment count on "comment" type
   if (parentType === 'comment') {
-    await models.Comment.updateOne(
-      { _id: parent },
-      { $inc: { commentCount: 1 } }
-    );
+    await models.CommentStats.findOneAndUpdate({ commentId: parent }, { $inc: { commentCount: 1 } })
   }
-  await Post.updateOne({ _id: postId }, { $inc: { commentCount: 1 } });
+  await models.PostStats.findOneAndUpdate({ postId }, { $inc: { commentCount: 1 } })
 };
