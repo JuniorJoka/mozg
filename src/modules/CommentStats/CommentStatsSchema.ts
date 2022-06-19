@@ -5,6 +5,7 @@ export default gql`
     id: String!
     commentId: String!
     upvotes: Int!
-    downVotes: Int!
+    downvotes: Int!
+    commentCount: Int!
 }
 `

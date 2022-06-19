@@ -1,6 +1,7 @@
 export default interface PostStats {
   _id: string;
   postId: string;
-  upVotes: number;
-  downVotes: number;
+  upvotes: number;
+  downvotes: number;
+  commentCount: number;
 }

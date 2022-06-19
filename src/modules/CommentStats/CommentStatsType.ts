@@ -3,4 +3,5 @@ export default interface CommentStats {
   commentId: string;
   upvotes: number;
   downvotes: number;
+  commentCount: number;
 }
