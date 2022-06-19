@@ -6,6 +6,7 @@ import Post from './Post';
 import User from './User';
 import Vote from './Vote';
 import PostStats from './PostStats';
+import CommentStats from './CommentStats'
 
 export default {
   Comment,
@@ -16,4 +17,5 @@ export default {
   User,
   Vote,
   PostStats,
+  CommentStats,
 };
