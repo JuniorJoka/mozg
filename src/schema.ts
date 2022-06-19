@@ -6,6 +6,7 @@ import { joinSchema } from './modules/Join/';
 import { postSchema } from './modules/Post';
 import { commentSchema } from './modules/Comment';
 import { voteSchema } from './modules/Vote';
+import { postStatsSchema } from './modules/PostStats';
 
 export default buildSubgraphSchema([
   userSchema,
@@ -14,5 +15,6 @@ export default buildSubgraphSchema([
   joinSchema,
   postSchema,
   commentSchema,
-  voteSchema
+  voteSchema,
+  postStatsSchema,
 ]);
