@@ -6,7 +6,7 @@ const voteSchema = new Schema({
   userId: { type: String, required: true, ref: 'User' },
   targetId: { type: String, required: true },
   targetType: { type: String, required: true },
-  voteValue: { type: Number, required: true },
+  isUpVote: { type: Boolean, required: true }
 });
 
 export default model('Vote', voteSchema);
