@@ -5,6 +5,7 @@ import Join from './Join';
 import Post from './Post';
 import User from './User';
 import Vote from './Vote';
+import PostStats from './PostStats';
 
 export default {
   Comment,
@@ -14,4 +15,5 @@ export default {
   Post,
   User,
   Vote,
+  PostStats,
 };
