@@ -8,7 +8,6 @@ export default gql`
     comment: String!
     commentor: User!
     replies: [Comment]
-    commentCount: Int!
   }
 
   extend type Query {
