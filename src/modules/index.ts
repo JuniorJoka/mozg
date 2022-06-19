@@ -4,6 +4,7 @@ import Follow from './Follow';
 import Join from './Join';
 import Post from './Post';
 import User from './User';
+import Vote from './Vote';
 
 export default {
   Comment,
@@ -12,4 +13,5 @@ export default {
   Join,
   Post,
   User,
+  Vote,
 };
