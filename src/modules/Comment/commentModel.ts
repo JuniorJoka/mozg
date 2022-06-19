@@ -13,13 +13,11 @@ const commentSchema = new Schema(
     comment: { type: String, required: true },
     commentorId: { type: String, required: true, ref: 'User' },
     isDeleted: { type: Boolean, required: true, default: false },
-    upVotes: { type: Number, required: true, default: 0 },
-    downVotes: { type: Number, required: true, default: 0 },
   },
   { timestamps: true }
 );
 
-commentSchema.pre('save', async function (done) {
+commentSchema.pre('save', async function(done) {
   if (this.isModified('parentType')) {
     this.set('parentType', this.get('parentType').toLowerCase());
   }

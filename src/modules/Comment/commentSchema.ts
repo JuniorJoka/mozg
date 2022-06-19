@@ -9,8 +9,6 @@ export default gql`
     commentor: User!
     replies: [Comment]
     commentCount: Int!
-    upVotes: Int!
-    downVotes: Int!
   }
 
   extend type Query {

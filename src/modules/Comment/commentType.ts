@@ -5,10 +5,11 @@ export default interface CommentType {
   parentType: string;
   comment: string;
   commentorId: string;
+  isDeleted: boolean;
 }
 
 export interface comment {
   commentId: string;
 }
 
-export interface newComment extends Omit<CommentType, '_id'> {}
+export interface newComment extends Omit<CommentType, '_id'> { }
