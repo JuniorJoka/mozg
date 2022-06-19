@@ -7,6 +7,7 @@ import { postSchema } from './modules/Post';
 import { commentSchema } from './modules/Comment';
 import { voteSchema } from './modules/Vote';
 import { postStatsSchema } from './modules/PostStats';
+import { commentStatsSchema } from './modules/CommentStats'
 
 export default buildSubgraphSchema([
   userSchema,
@@ -17,4 +18,5 @@ export default buildSubgraphSchema([
   commentSchema,
   voteSchema,
   postStatsSchema,
+  commentStatsSchema,
 ]);
