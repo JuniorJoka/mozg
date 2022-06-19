@@ -5,9 +5,6 @@ export default interface PostType {
   communityId: String;
   title: string;
   content: string;
-  commentCount: number;
-  upVotes: number;
-  downVotes: number;
 }
 
 export interface newPost {

@@ -12,9 +12,6 @@ const postSchema = new Schema(
     title: { type: String, required: true },
     content: { type: String },
     postType: { type: String, required: true, enum: postTypes },
-    upVotes: { type: Number, required: true, default: 0 },
-    downVotes: { type: Number, required: true, default: 0 },
-    commentCount: { type: Number, required: true, default: 0 },
   },
   { timestamps: true }
 );

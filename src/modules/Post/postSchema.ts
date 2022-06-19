@@ -10,9 +10,6 @@ export default gql`
     community: Community
     title: String!
     content: String
-    commentCount: Int!
-    upVotes: Int!
-    downVotes: Int!
   }
 
   extend type Mutation {
