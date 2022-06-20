@@ -26,9 +26,12 @@ export default async (_: {}, args: newComment, context: Context) => {
   const valid = await comment.save();
   if (!valid) throw new Error(`An error occurred while creating comment`);
 
+
+  // first create comment-stat for the created comment
+  await models.CommentStats.create({ commentId: comment.id })
   // increment comment count on "comment" type
   if (parentType === 'comment') {
-    await models.CommentStats.findOneAndUpdate({ commentId: parent }, { $inc: { commentCount: 1 } })
+    await models.CommentStats.findOneAndUpdate({ commentId: parentId }, { $inc: { commentCount: 1 } })
   }
   await models.PostStats.findOneAndUpdate({ postId }, { $inc: { commentCount: 1 } })
 };
