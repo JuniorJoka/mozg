@@ -10,6 +10,7 @@ export default gql`
     community: Community
     title: String!
     content: String
+    stats: PostStats!
   }
 
   extend type Mutation {
