@@ -5,14 +5,16 @@ export default gql`
     id: String!
     parentId: String!
     parentType: String!
+    postId: String!
     comment: String!
     commentor: User!
     replies: [Comment]
+    stats: CommmentStats!
   }
 
   extend type Query {
     comment(commentId: String!): Comment
-    postComments(PostId: String!): [Comment]
+    postComments(postId: String!): [Comment]
   }
 
   extend type Mutation {
