@@ -13,9 +13,9 @@ export default async (_: {}, args: Vote, { models, user }: Context) => {
   if (!vote) {
     return
   }
-  const { isUpVote, targetType } = vote
+  const { isUpvote, targetType } = vote
 
-  if (isUpVote) {
+  if (isUpvote) {
     if (targetType === 'post') {
       await models.PostStats.findOneAndUpdate({ postId }, { $inc: { upvotes: -1 } })
     } else {

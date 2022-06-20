@@ -2,21 +2,21 @@ import { Context } from '../../../shared/Types';
 import { Vote } from '../voteType';
 
 export default async (_: {}, args: Vote, { models, user }: Context) => {
-  const { targetId, targetType, isUpVote } = args;
+  const { targetId, targetType, isUpvote } = args;
   const userId = user?.id;
   const postId = targetId
   const commentId = targetId
 
   const hasVoted = await models.Vote.findOne({ userId, targetId })
   if (hasVoted) {
-    if (isUpVote !== hasVoted.isUpVote) {
+    if (isUpvote !== hasVoted.isUpvote) {
       await models.Vote.findOneAndUpdate({
         userId,
         targetId
-      }, { $set: { isUpVote } })
+      }, { $set: { isUpvote } })
 
       if (targetType === 'post') {
-        if (isUpVote) {
+        if (isUpvote) {
           await models.PostStats.findOneAndUpdate({ postId }, { $inc: { upvotes: 1 } })
           await models.PostStats.findOneAndUpdate({ postId }, { $inc: { downvotes: -1 } })
         } else {
@@ -24,7 +24,7 @@ export default async (_: {}, args: Vote, { models, user }: Context) => {
           await models.PostStats.findOneAndUpdate({ postId }, { $inc: { upvotes: -1 } })
         }
       } else {
-        if (isUpVote) {
+        if (isUpvote) {
           await models.CommentStats.findOneAndUpdate({ commentId }, { $inc: { upvotes: 1 } })
           await models.CommentStats.findOneAndUpdate({ commentId }, { $inc: { downvotes: -1 } })
         } else {
@@ -41,18 +41,18 @@ export default async (_: {}, args: Vote, { models, user }: Context) => {
     userId,
     targetType,
     targetId,
-    isUpVote,
+    isUpvote,
   });
 
 
   if (targetType === 'post') {
-    if (isUpVote) {
+    if (isUpvote) {
       await models.PostStats.findOneAndUpdate({ postId }, { $inc: { upvotes: 1 } })
     } else {
       await models.PostStats.findOneAndUpdate({ postId }, { $inc: { downvotes: 1 } })
     }
   } else {
-    if (isUpVote) {
+    if (isUpvote) {
       await models.CommentStats.findOneAndUpdate({ commentId }, { $inc: { upvotes: 1 } })
     } else {
       await models.CommentStats.findOneAndUpdate({ commentId }, { $inc: { downvotes: 1 } })
